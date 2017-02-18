@@ -35,6 +35,14 @@ bool Punto::usado(){
     else return true ;
 }
 
+void removc(int c){
+    colecciones.erase(c) ;
+}
+
+void removs(int s){
+    satelites.erase(s) ;
+}
+
 /**
  * Devuelve el satélite encargado de fotografiar el punto
  */
