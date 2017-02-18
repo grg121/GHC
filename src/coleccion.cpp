@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Coleccion::Coleccion(long int puntuacion, list<long int> & rangos, list<Punto*> &puntos){
+Coleccion::Coleccion(long int puntuacion, list<pair<int,int> > & rangos, list<Punto*> &puntos){
   this->puntuacion = puntuacion;
   this->rangos = rangos;
   this->puntos = puntos;
