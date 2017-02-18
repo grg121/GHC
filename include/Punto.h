@@ -25,4 +25,10 @@ public:
     // Devuelve el satélite encargado de fotografiar el punto
     int getOwner() ;
 
+    /**
+     * Menor prioridad == más importante
+     * Factores: menos satélites, más conjuntos, no está.
+     **/
+
+    int getPriority() ;
 }
