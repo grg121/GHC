@@ -1,33 +1,35 @@
-Punto(int long, int lat){
-    longitud = long ;
+#include "Punto.h"
+
+Punto::Punto(int longitud, int lat){
+    longitud = longitud ;
     latitud = lat ;
 }
 
-int getLongitud(){
+int Punto::getLongitud(){
     return longitud ;
 }
 
-int getLatitud(){
+int Punto::getLatitud(){
     return latitud ;
 }
 
-set<int> getColecciones(){
+set<int> Punto::getColecciones(){
     return colecciones ;
 }
 
-set<int> getSatelites(){
+set<int> Punto::getSatelites(){
     return satelites ;
 }
 
-void insertc(int c){
+void Punto::insertc(int c){
     colecciones.insert(c) ;
 }
 
-void inserts(int s){
-    satelites.inset(s) ;
+void Punto::inserts(int s){
+    satelites.insert(s) ;
 }
 
-bool usado(){
+bool Punto::usado(){
     if (owner < 0)
         return false ;
     else return true ;
@@ -36,6 +38,6 @@ bool usado(){
 /**
  * Devuelve el satélite encargado de fotografiar el punto
  */
-int getOwner(){
+int Punto::getOwner(){
     return owner ;
 }

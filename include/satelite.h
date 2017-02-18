@@ -1,5 +1,5 @@
 #include <list>
-#include "punto.h"
+#include "Punto.h"
 
 using namespace std;
 

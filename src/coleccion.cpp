@@ -3,11 +3,11 @@
 
 using namespace std;
 
-Coleccion::Coleccion(long int puntuacion, list<pair<int,int> > & rangos, list<Punto*> &puntos){
-  this->puntuacion = puntuacion;
-  this->rangos = rangos;
-  this->puntos = puntos;
-}
+Coleccion::Coleccion(long int puntuacion, list<pair<int,int> > & rangos, list<Punto*> &puntos):
+  puntuacion(puntuacion),
+  rangos(rangos),
+  puntos(puntos)
+  {}
 
 int Coleccion::getTamListPuntos() const{
   return puntos.size();
@@ -17,10 +17,10 @@ long int Coleccion::getPuntuacion() const{
   return puntuacion;
 }
 
-list<long int> & Coleccion::getRangos() const{
+const list<pair<int,int> >& Coleccion::getRangos() const{
   return rangos;
 }
 
-list<Punto> & Coleccion::getListPuntos() const{
+const list<Punto*> & Coleccion::getListPuntos() const{
   return puntos;
 }

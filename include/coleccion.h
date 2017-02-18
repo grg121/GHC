@@ -25,9 +25,9 @@ class Coleccion{
     /**
     * Devuelve la lista de rangos
     */
-    list<long int> & getRangos() const;
+    const list<pair<int,int> > & getRangos() const;
     /**
     * Devuelve la lista de puntos
     */
-    list<Punto> & getListPuntos() const;
+    const list<Punto*> & getListPuntos() const;
 };

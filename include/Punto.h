@@ -1,19 +1,21 @@
 #include<set>
 
+using namespace std;
+
 class Punto {
 
 private:
 
     int longitud, latitud ;
 
-    set<int> coleccioneses ;
+    set<int> colecciones ;
     set<int> satelites ;
 
-    int owner = -1 ;
+    int owner ;
 
 public:
 
-    Punto(int long, int lat) ;
+    Punto(int longitud, int lat) ;
     int getLongitud() ;
     int getLatitud() ;
     set<int> getColecciones() ;
@@ -31,4 +33,4 @@ public:
      **/
 
     int getPriority() ;
-}
+};
