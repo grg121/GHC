@@ -22,6 +22,8 @@ public:
     set<int> getSatelites() ;
     void insertc(int c) ;
     void inserts(int s) ;
+    void removc(int c) ;
+    void removs(int s) ;
     bool usado() ;
 
     // Devuelve el satélite encargado de fotografiar el punto
