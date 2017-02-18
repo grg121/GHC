@@ -2,7 +2,9 @@
 #include<satelite>
 #include<coleccion>
 class Punto {
+
 private:
+
     int longitud, latitud ;
 
     set<int> coleccioneses ;
@@ -42,6 +44,9 @@ public:
         else return true ;
     }
 
+    /**
+     * Devuelve el satélite encargado de fotografiar el punto
+     */
     int getOwner(){
         return owner ;
     }
