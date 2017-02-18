@@ -1,3 +1,7 @@
+#ifndef _COLECCION_H_
+#define _COLECCION_H_
+#endif
+
 #include <iostream>
 #include <list>
 #include "Punto.h"

@@ -1,3 +1,7 @@
+#ifndef _SATELITE_H_
+#define _SATELITE_H_
+#endif
+
 #include <list>
 #include <unordered_set>
 #include "Punto.h"
@@ -15,7 +19,7 @@ class Satelite{
             pasos;      //num total de pasos
         long int velocidad;  //velocidad satelite (v>0 -> hacia el sur)
         list<Punto*> list_puntos;   //Lista de puntos que puede abarcar
-        
+
         inline long int adjust_lat(long int arcs, bool & cambia_velocidad);
         inline long int adjust_lon(long int arcs, bool & cambia_velocidad);
         struct Area{
@@ -31,7 +35,7 @@ class Satelite{
             Area(long int lon, long int lat, long int d):
                 lon(lon),
                 lat(lat)
-            {   
+            {
                 /*
                     Tres casos:
                         -Desborda por la izquierda
@@ -44,7 +48,7 @@ class Satelite{
                 //Right limit
                 right_limit = lon+d;
                 desb_rig = adjust_lon(right_limit);
-                //Top limit                
+                //Top limit
                 top_limit = lat+d;
                 desb_top =  adjust_lat(top_limit);
                 //Bottom limit
@@ -60,7 +64,7 @@ class Satelite{
     public:
         Satelite(long int ini_lon, long int ini_lat, long int vel, long int w, long int d, long int pasos);
         bool pertenece_punto(Punto * p);
-        list<pair<Punto,long int> > get_optimo();            
+        list<pair<Punto,long int> > get_optimo();
 }
 
 Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w, long int d):
@@ -71,7 +75,7 @@ Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w,
     d(d),
     pasos(pasos)
 {
-    long int 
+    long int
         vel = v,
         lat = ini_lat,
         lon = ini_lon;
@@ -82,7 +86,7 @@ Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w,
             lon-=180;
             vel*=-1;
         }
-        adjust_lon(lon-=15);        
+        adjust_lon(lon-=15);
     }
 
 }
