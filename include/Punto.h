@@ -1,6 +1,5 @@
 #include<set>
-#include<satelite>
-#include<coleccion>
+
 class Punto {
 
 private:
