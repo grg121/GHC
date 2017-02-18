@@ -11,6 +11,10 @@ class Coleccion{
     list<Punto*> puntos;
   public:
     /**
+      Constructor con parametros
+    */
+    Coleccion(long int puntuacion, list<long int> & rangos, list<Punto*> &puntos);
+    /**
     * Devuelve el tamaño de la lista de punteros a Puntos
     */
     int getTamListPuntos() const;
