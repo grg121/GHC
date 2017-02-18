@@ -18,22 +18,36 @@ class Satelite{
         inline long int adjust_lon(long int arcs, bool & cambia_velocidad);
         struct Area{
             long int
-                centro,
+                lon,lat,
                 left_limit,
                 right_limit,
                 top_limit,
                 bottom limit;
-
+            bool desb_lef, desb_rig desb_top, desb_bot;
             list<Punto *> list_puntos_posibles;
 
-            Area(long int centro, long int d):
-                centro(centro)
-            {
-                bool dummy;
-                left_limit = adjust_lon(centro-d,dummy);
-                right_limit = adjust_lon(centro+d,dummy);
-                top_limit = adjust_lat(centro+d,dummy);
-                bottom_limit = adjust_lat(centro-d,dummy );
+            Area(long int lon, long int lat, long int d):
+                lon(lon),
+                lat(lat)
+            {   
+                /*
+                    Tres casos:
+                        -Desborda por la izquierda
+                        -Desborda por arriba
+                        -Desborda por abajo
+                */
+                //Left limit
+                left_limit = lon-d;
+                desb_lef = adjust_lon(left_limit);
+                //Right limit
+                right_limit = lon+d;
+                desb_rig = adjust_lon(right_limit);
+                //Top limit                
+                top_limit = lat+d;
+                desb_top =  adjust_lat(top_limit);
+                //Bottom limit
+                bottom_limit = lat-d;
+                desb_bot = adjust_lat(bottom_limit);
             };
             list<Area> list_areas;      
         };
@@ -57,8 +71,10 @@ Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w,
         lat = ini_lat,
         lon = ini_lon;
     for(long int i=0; i<pasos; i++){
-        Area a()
-        list_areas.push_back(Area())
+        Area a(lon, lat);
+        list_areas.push_back(a);
+        if(adjust_lat(lat+=v))
+            lon+=
     }
 
 }
@@ -81,6 +97,6 @@ bool Satelite::pertenece_punto(Punto *p){
     return esta;
 }
 
-//list<pair<Punto, long int> > Satelite::get_optimo(){
-//
-//}
+list<pair<Punto, long int> > Satelite::get_optimo(){
+
+}
