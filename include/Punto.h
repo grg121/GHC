@@ -1,54 +1,36 @@
 #include<set>
 
+using namespace std;
+
 class Punto {
 
 private:
 
     int longitud, latitud ;
 
-    set<int> coleccioneses ;
+    set<int> colecciones ;
     set<int> satelites ;
 
-    int owner = -1 ;
+    int owner ;
 
 public:
 
-    int getLongitud(){
-        return longitud ;
-    }
+    Punto(int longitud, int lat) ;
+    int getLongitud() ;
+    int getLatitud() ;
+    set<int> getColecciones() ;
+    set<int> getSatelites() ;
+    void insertc(int c) ;
+    void inserts(int s) ;
+    bool usado() ;
 
-    int getLatitud(){
-        return latitud ;
-    }
-
-    set<int> colecciones getColecciones(){
-        return colecciones ;
-    }
-
-    set<int> satelites getSatelites(){
-        return satelites ;
-    }
-
-    void insertc(int c){
-        colecciones.insert(c) ;
-    }
-
-    void inserts(int s){
-        satelites.inset(s) ;
-    }
-
-    bool usado(){
-        if (owner < 0)
-            return false ;
-        else return true ;
-    }
+    // Devuelve el satélite encargado de fotografiar el punto
+    int getOwner() ;
 
     /**
-     * Devuelve el satélite encargado de fotografiar el punto
-     */
-    int getOwner(){
-        return owner ;
-    }
+     * Menor prioridad == más importante
+     * Factores: menos satélites, más conjuntos, no está.
+     **/
 
-
-}
+    int getPriority() ;
+};

@@ -1,11 +1,11 @@
 #include <list>
-#include "punto.h"
+#include "Punto.h"
 
 using namespace std;
 
 class Satelite{
     private:
-        const long int 
+        const long int
             ini_lon,   //longitud inicial
             ini_lat,    //latitud inicial
             w,          //max arcsec change through turns
@@ -16,15 +16,14 @@ class Satelite{
         
         inline long int adjust_lat(long int arcs, bool & cambia_velocidad);
         inline long int adjust_lon(long int arcs, bool & cambia_velocidad);
-    
         struct Area{
-            long int 
+            long int
                 centro,
                 left_limit,
                 right_limit,
                 top_limit,
                 bottom limit;
-            
+
             list<Punto *> list_puntos_posibles;
 
             Area(long int centro, long int d):
