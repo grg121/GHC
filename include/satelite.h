@@ -12,7 +12,8 @@ using namespace std;
 class Satelite{
     private:
         const long int
-            ini_lon,   //longitud inicial
+            id,         //identificador satelite
+            ini_lon,    //longitud inicial
             ini_lat,    //latitud inicial
             w,          //max arcsec change through turns
             d,          //max total arcsec change
@@ -58,7 +59,8 @@ class Satelite{
             };
             list<Area> list_areas;  
 
-            bool pertenece(Punto * p);    
+            bool pertenece(Punto * p);  
+            void pasosHasta(Punto * p, long int & hor, long int & ver);  
         };
 
     public:
@@ -101,9 +103,40 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
         ++fin;
 
     list<Satelite::Area> proximos(it, fin);
-    long int lon_offset = 0, lat_offset = 0;
+    long int    lon = ini_lon,
+                lat = ini_lat, 
+                lon_offset = 0, 
+                lat_offset = 0;
     Point* objetivo = NULL;
-    for(; it != list_areas.end(); ++it){
-        if(objetivo && )
+    for(int i=0; it != list_areas.end(); ++it, i++){
+        Area a(lon + lon_offset, lat + lat_offset,w);
+        //Compruebo si llego al punto
+        if(objetivo && a.pertenece(objetivo)){
+            lon_offset = p->getLongitud() - lon;
+            lat_offset = p->getLatitud() - lat;
+            objetivo->setOwner(id);
+            resultado.push_back(make_pair(objetivo,i));
+            objetivo = NULL;
+        
+        //Elijo punto y desplazo el offset
+        }else{
+            //Elijo el mejor punto
+            list<Satelite::Area>::const_reverse_iterator it1;
+            list<Punto *>::const_iterator it2;
+            long int i_plano, j=RESOLUCION;
+            for(it1 = proximos.rbegin(); it1 != proximos.rend(); ++it1){
+                RESOLUCION--;
+                for(it2 = it1->list_puntos_posibles.begin(); it2 >= it1->list_puntos_posibles.end()){
+                    if(!objetivo || ((*it2)->getPriority() > objetivo->getPriority())){
+                        objetivo = *it2;
+                        i_plano = j;
+                    }
+                }
+            }
+            //Actualizo offset
+
+        }
+
+        //Actualizar lon, lat y lista siguientes
     }
 }
