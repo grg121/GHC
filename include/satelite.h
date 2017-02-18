@@ -4,6 +4,7 @@
 
 #include <list>
 #include <unordered_set>
+#include <stdlib.h>
 #include "Punto.h"
 
 
@@ -60,7 +61,7 @@ class Satelite{
             list<Area> list_areas;  
 
             bool pertenece(Punto * p);  
-            void pasosHasta(Punto * p, long int & hor, long int & ver);  
+            void pasosHasta(Punto * p, long int lim_hor, long int lim_ver, long int & hor, long int & ver);  
         };
 
     public:
@@ -134,7 +135,12 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
                 }
             }
             //Actualizo offset
-
+            int num_pasos_h,num_pasos_v;
+            it1 = proximos.begin()
+            for(int i = 0 ; i < i_plano; i++, ++it1){}//For vacío
+            it1->pasosHasta(objetivo,num_pasos_h,num_pasos_v);
+            if(i_plano > abs(num_pasos_h))
+                lon_offset += w;
         }
 
         //Actualizar lon, lat y lista siguientes
