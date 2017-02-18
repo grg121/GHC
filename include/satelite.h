@@ -73,28 +73,13 @@ Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w,
     for(long int i=0; i<pasos; i++){
         Area a(lon, lat);
         list_areas.push_back(a);
-        if(adjust_lat(lat+=v))
-            lon+=
-    }
-
-}
-
-bool Satelite::pertenece_punto(Punto *p){
-    bool esta = false;
-    list<Punto *>::const_iterator it;
-    for(it = list_areas.begin(); it != list_areas.end(); ++it){
-        bool en_area = true;
-        en_area = en_area && ((*it)->left_limit <= p->getLongitud());
-        en_area = en_area && ((*it)->right_limit >= p->getLongitud());
-        en_area = en_area && ((*it)->top_limit >= p->getLatitud());
-        en_area = en_area && ((*it)->bottom_limit <= p->getLatitud());
-
-        if(en_area){
-            esta = true;
-            (*it)->push_back(p);
+        if(adjust_lat(lat+=v)){
+            lon-=180;
+            vel*=-1;
         }
+        adjust_lon(lon-=15);        
     }
-    return esta;
+
 }
 
 list<pair<Punto, long int> > Satelite::get_optimo(){
