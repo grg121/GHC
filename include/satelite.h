@@ -22,8 +22,8 @@ class Satelite{
         long int velocidad;  //velocidad satelite (v>0 -> hacia el sur)
         list<Punto*> list_puntos;   //Lista de puntos que puede abarcar
 
-        inline long int adjust_lat(long int arcs, bool & cambia_velocidad);
-        inline long int adjust_lon(long int arcs, bool & cambia_velocidad);
+        inline bool adjust_lat(int &arcs);
+        inline bool adjust_lon(int &arcs);
         struct Area{
             long int
                 lon,lat,
@@ -100,16 +100,19 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
 
     list<Area>::iterator it, fin;
     ini = fin = list_areas.begin();
-    for(long int i=0; i<RESOLUCION; i++)
+    for(long int i=0; i<RESOLUCION && fin != list_areas.end(); i++)
         ++fin;
 
     list<Satelite::Area> proximos(it, fin);
     long int    lon = ini_lon,
-                lat = ini_lat, 
+                lat = ini_lat,
+                vel = velocidad, 
                 lon_offset = 0, 
                 lat_offset = 0;
     Point* objetivo = NULL;
     for(int i=0; it != list_areas.end(); ++it, i++){
+        lon = it->lon;
+        lat = it->lat;
         Area a(lon + lon_offset, lat + lat_offset,w);
         //Compruebo si llego al punto
         if(objetivo && a.pertenece(objetivo)){
@@ -138,12 +141,23 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
             int num_pasos_h,num_pasos_v;
             it1 = proximos.begin()
             for(int i = 0 ; i < i_plano; i++, ++it1){}//For vacío
-            it1->pasosHasta(objetivo,w,w,num_pasos_h,num_pasos_v);
-            if(i_plano > abs(num_pasos_h))
+            it1->pasosHasta(objetivo,lon_offset, lat_offset, w,w,num_pasos_h,num_pasos_v);
+            if(i_plano <= abs(num_pasos_h))
                 if(num_pasos_h > 0)
-                lon_offset += w;
+                    lon_offset += w;
+                else if(num_pasos_h < 0)
+                    lon_offset -= w;
+            if(i_plano <= abs(num_pasos_v))
+                if(num_pasos_v > 0)
+                    lat_offset += w;
+                else if(num_pasos_v < 0)
+                    lat_offset -= w;
         }
-
-        //Actualizar lon, lat y lista siguientes
+        //Actualizar lista siguientes
+        if(fin != list_areas.end()){
+            proximos.push_back(*fin);            
+            ++fin;
+        }
+        proximos.pop_fron();
     }
 }
