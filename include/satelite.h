@@ -1,5 +1,7 @@
 #include <list>
+#include <unordered_set>
 #include "Punto.h"
+
 
 using namespace std;
 
@@ -23,7 +25,7 @@ class Satelite{
                 right_limit,
                 top_limit,
                 bottom limit;
-            bool desb_lef, desb_rig desb_top, desb_bot;
+            bool desb_lef, desb_rig, desb_top, desb_bot;
             list<Punto *> list_puntos_posibles;
 
             Area(long int lon, long int lat, long int d):
@@ -48,8 +50,11 @@ class Satelite{
                 //Bottom limit
                 bottom_limit = lat-d;
                 desb_bot = adjust_lat(bottom_limit);
+
             };
-            list<Area> list_areas;      
+            list<Area> list_areas;  
+
+            bool pertenece(Punto * p);    
         };
 
     public:
@@ -71,7 +76,7 @@ Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w,
         lat = ini_lat,
         lon = ini_lon;
     for(long int i=0; i<pasos; i++){
-        Area a(lon, lat);
+        Satelite::Area a(lon, lat);
         list_areas.push_back(a);
         if(adjust_lat(lat+=v)){
             lon-=180;
@@ -82,6 +87,19 @@ Satelite::Satelite(long int ini_lon, long int ini_lat, long int vel, long int w,
 
 }
 
-list<pair<Punto, long int> > Satelite::get_optimo(){
+list<pair<Punto*, long int> > Satelite::get_optimo(){
+    const long int RESOLUCION = 2*d/w;
+    list<pair<Punto*, long int> > resultado;
 
+    list<Area>::iterator it, fin;
+    ini = fin = list_areas.begin();
+    for(long int i=0; i<RESOLUCION; i++)
+        ++fin;
+
+    list<Satelite::Area> proximos(it, fin);
+    long int lon_offset = 0, lat_offset = 0;
+    Point* objetivo = NULL;
+    for(; it != list_areas.end(); ++it){
+        if(objetivo && )
+    }
 }
