@@ -1,33 +1,16 @@
-CC := g++ # This is the main compiler
-SRCDIR := src
-BUILDDIR := obj
-TARGET := bin/testPoint
+all: bin/main
 
-SRCEXT := cpp
-SOURCES := $(shell find $(SRCDIR) -type f -name "*.$(SRCEXT)")
-OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -g -std=c++11 -Wall
-LIB := -L lib
-INC := -I include
-
-$(TARGET): $(OBJECTS)
-	@echo " Linking..."
-	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
-
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@mkdir -p $(BUILDDIR)
-	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
-
+bin/main: obj/main.o obj/coleccion.o obj/punto.o obj/satelite.o 
+	g++ -o bin/main -std=c++11 obj/main.o obj/coleccion.o obj/punto.o obj/satelite.o 
+obj/main.o: src/main.cpp include/coleccion.h include/Punto.h include/satelite.h
+	g++ -c -std=c++11 -Iinclude -o obj/main.o src/main.cpp 
+obj/coleccion.o: src/coleccion.cpp include/coleccion.h include/Punto.h
+	g++ -c -std=c++11 -Iinclude -o obj/coleccion.o src/coleccion.cpp 
+obj/punto.o: src/Punto.cpp include/Punto.h
+	g++ -c -std=c++11 -Iinclude -o obj/punto.o src/Punto.cpp 
+obj/satelite.o: src/satelite.cpp include/satelite.h
+	g++ -c -std=c++11 -Iinclude -o obj/satelite.o src/satelite.cpp 
 clean:
-	@echo " Cleaning...";
-	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
-
-# Tests
-tester:
-	$(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o bin/tester
-
-# Spikes
-ticket:
-	$(CC) $(CFLAGS) spikes/ticket.cpp $(INC) $(LIB) -o bin/ticket
-
-.PHONY: clean
+	rm -f obj/*
+mrproper: clean 
+	rm -f bin/*

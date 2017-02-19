@@ -10,6 +10,32 @@
 
 using namespace std;
 
+inline bool adjust_lat(long int &arcs){
+  bool desborda = false;
+  if(arcs < ((-90)*3600)){
+    arcs = (-180*3600) - arcs;
+    desborda = true;
+  }
+  else if(arcs > (90*3600)){
+    arcs = 180*3600 - arcs;
+    desborda = true;
+  }
+  return desborda;
+}
+
+inline bool adjust_lon(long int &arcs){
+  bool desborda = false;
+  if(arcs < (-180*3600)){
+    arcs += 360*3600;
+    desborda = true;
+  }
+  else if(arcs > (180*3600)-1){
+    arcs -= 360*3600;
+    desborda = true;
+  }
+  return desborda;
+}
+
 class Satelite{
     private:
         const long int
@@ -20,19 +46,20 @@ class Satelite{
             d,          //max total arcsec change
             pasos;      //num total de pasos
         long int velocidad;  //velocidad satelite (v>0 -> hacia el sur)
-        unordered_set<Punto*> set_puntos;   //Lista de puntos que puede abarcar
+        unordered_set<Punto *> set_puntos;   //Lista de puntos que puede abarcar
 
-        inline bool adjust_lat(int &arcs);
-        inline bool adjust_lon(int &arcs);
+
         struct Area{
             long int
-                lon,lat,
-                left_limit,
-                right_limit,
-                top_limit,
-                bottom limit;
+            	lon,
+            	lat,
+            	left_limit,
+            	right_limit,
+            	top_limit,
+            	bottom_limit;
             bool desb_lef, desb_rig, desb_top, desb_bot;
             list<Punto *> list_puntos_posibles;
+
 
             Area(long int lon, long int lat, long int d):
                 lon(lon),
@@ -58,11 +85,13 @@ class Satelite{
                 desb_bot = adjust_lat(bottom_limit);
 
             };
-            list<Area> list_areas;  
+            bool pertenece(Punto * p);
+            void pasosHasta(Punto * p, long int hor_offset, long int ver_offset, long int lim_hor, long int lim_ver, long int & hor, long int & ver);
 
-            bool pertenece(Punto * p);  
-            void pasosHasta(Punto * p, long int hor_offset, long int ver_offset, long int lim_hor, long int lim_ver, long int & hor, long int & ver);  
+            friend class Satelite;
+
         };
+        list<Area> list_areas;
 
     public:
         Satelite(long int id, long int ini_lon, long int ini_lat, long int vel, long int w, long int d, long int pasos);
@@ -71,6 +100,6 @@ class Satelite{
         unordered_set<Punto *> get_puntos(){
             return set_puntos;
         }
-}
+};
 
 #endif

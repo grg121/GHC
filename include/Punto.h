@@ -21,7 +21,7 @@ private:
 
 public:
 
-    Punto(int longitud, int lat) ;
+    Punto(int longitud, int lat, int owner = -1) ;
     int getLongitud() ;
     int getLatitud() ;
     set<Coleccion*> getColecciones() ;
@@ -34,6 +34,10 @@ public:
 
     // Devuelve el satélite encargado de fotografiar el punto
     int getOwner() ;
+
+    void setOwner(int id){
+    	owner = id;
+    }
 
     /**
      * Más prioridad == más importante

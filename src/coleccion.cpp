@@ -3,11 +3,6 @@
 
 using namespace std;
 
-Coleccion::Coleccion(long int puntuacion, list<pair<int,int> > & rangos, list<Punto*> &puntos):
-  puntuacion(puntuacion),
-  rangos(rangos),
-  puntos(puntos)
-  {}
 
 int Coleccion::getTamListPuntos() const{
   return puntos.size();

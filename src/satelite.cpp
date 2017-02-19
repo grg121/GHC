@@ -5,13 +5,13 @@ Satelite::Satelite(long int id, long int ini_lon, long int ini_lat, long int vel
     id(id),
     ini_lat(ini_lat),
     ini_lon(ini_lon),
-    velocidad(v),
+    velocidad(vel),
     w(w),
     d(d),
     pasos(pasos)
 {
     long int
-        vel = v,
+        v = vel,
         lat = ini_lat,
         lon = ini_lon;
     for(long int i=0; i<pasos; i++){
@@ -19,7 +19,7 @@ Satelite::Satelite(long int id, long int ini_lon, long int ini_lat, long int vel
         list_areas.push_back(a);
         if(adjust_lat(lat+=v)){
             lon-=180;
-            vel*=-1;
+            v*=-1;
         }
         adjust_lon(lon-=15);
     }
@@ -31,7 +31,7 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
     list<pair<Punto*, long int> > resultado;
 
     list<Area>::iterator it, fin;
-    ini = fin = list_areas.begin();
+    it = fin = list_areas.begin();
     for(long int i=0; i<RESOLUCION && fin != list_areas.end(); i++)
         ++fin;
 
@@ -41,15 +41,15 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
                 vel = velocidad, 
                 lon_offset = 0, 
                 lat_offset = 0;
-    Point* objetivo = NULL;
+    Punto * objetivo = NULL;
     for(int i=0; it != list_areas.end(); ++it, i++){
         lon = it->lon;
         lat = it->lat;
         Area a(lon + lon_offset, lat + lat_offset,w);
         //Compruebo si llego al punto
         if(objetivo && a.pertenece(objetivo)){
-            lon_offset = p->getLongitud() - lon;
-            lat_offset = p->getLatitud() - lat;
+            lon_offset = objetivo->getLongitud() - lon;
+            lat_offset = objetivo->getLatitud() - lat;
             objetivo->setOwner(id);
             resultado.push_back(make_pair(objetivo,i));
             objetivo = NULL;
@@ -58,12 +58,12 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
         }else{
             //Elijo el mejor punto
             //TODO LOGICA RANGO
-            list<Satelite::Area>::const_reverse_iterator it1;
+            list<Satelite::Area>::reverse_iterator it1;
             list<Punto *>::const_iterator it2;
             long int i_plano, j=RESOLUCION;
             for(it1 = proximos.rbegin(); it1 != proximos.rend(); ++it1){
                 RESOLUCION--;
-                for(it2 = it1->list_puntos_posibles.begin(); it2 >= it1->list_puntos_posibles.end()){
+                for(it2 = it1->list_puntos_posibles.begin(); it2 != it1->list_puntos_posibles.end(); ++it2){
                     if(!objetivo || ((*it2)->getPriority() > objetivo->getPriority())){
                         objetivo = *it2;
                         i_plano = j;
@@ -71,8 +71,8 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
                 }
             }
             //Actualizo offset
-            int num_pasos_h,num_pasos_v;
-            it1 = proximos.begin()
+            long int num_pasos_h,num_pasos_v;
+            it1 = proximos.begin();
             for(int i = 0 ; i < i_plano; i++, ++it1){}//For vacío
             it1->pasosHasta(objetivo,lon_offset, lat_offset, w,w,num_pasos_h,num_pasos_v);
             if(i_plano <= abs(num_pasos_h))
@@ -91,42 +91,16 @@ list<pair<Punto*, long int> > Satelite::get_optimo(){
             proximos.push_back(*fin);            
             ++fin;
         }
-        proximos.pop_fron();
+        proximos.pop_front();
     }
+    return resultado;
 }
 
-inline bool adjust_lat(int &arcs){
-  bool desborda = false;
-  if(arcs < ((-90)*3600)){
-    arcs = (-180*3600) - arcs;
-    desborda = true;
-  }
-  else if(arcs > (90*3600)){
-    arcs = 180*3600 - arcs;
-    desborda = true;
-  }
-  return desborda;
-}
-
-inline bool adjust_lon(int &arcs){
-  bool desborda = false;
-  else if(arcs < (-180*3600)){
-    arcs += 360*3600;
-    desborda = true;
-  }
-  else if(arcs > (180*3600)-1){
-    arcs -= 360*3600;
-    desborda = true;
-  }
-  return desborda;
-}
-
-bool Satelite::pertenece_punto(Punto *p){
+bool Satelite::pertenece_punto(Punto * p){
     bool esta = false;
-    list<Area>::const_iterator it;
+    list<Area>::iterator it;
     for(it = list_areas.begin(); it != list_areas.end(); ++it){
-        bool en_area = (*it).pertenece(p);
-
+        bool en_area = it->pertenece(p);
         if(en_area){
             esta = true;
             it->list_puntos_posibles.push_back(p);

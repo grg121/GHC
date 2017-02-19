@@ -1,0 +1,412 @@
+In file included from include/Punto.h:6:0,
+                 from include/coleccion.h:6,
+                 from src/main.cpp:10:
+include/satelite.h:49:23: error: ‘Punto’ was not declared in this scope
+         unordered_set<Punto *> set_puntos;   //Lista de puntos que puede abarcar
+                       ^
+include/satelite.h:49:30: error: template argument 1 is invalid
+         unordered_set<Punto *> set_puntos;   //Lista de puntos que puede abarcar
+                              ^
+include/satelite.h:49:30: error: template argument 2 is invalid
+include/satelite.h:49:30: error: template argument 3 is invalid
+include/satelite.h:49:30: error: template argument 4 is invalid
+include/satelite.h:61:18: error: ‘Punto’ was not declared in this scope
+             list<Punto *> list_puntos_posibles;
+                  ^
+include/satelite.h:61:25: error: template argument 1 is invalid
+             list<Punto *> list_puntos_posibles;
+                         ^
+include/satelite.h:61:25: error: template argument 2 is invalid
+include/satelite.h:88:28: error: ‘Punto’ has not been declared
+             bool pertenece(Punto * p);
+                            ^
+include/satelite.h:89:29: error: ‘Punto’ has not been declared
+             void pasosHasta(Punto * p, long int hor_offset, long int ver_offset, long int lim_hor, long int lim_ver, long int & hor, long int & ver);
+                             ^
+In file included from include/Punto.h:6:0,
+                 from include/coleccion.h:6,
+                 from src/main.cpp:10:
+include/satelite.h:98:30: error: ‘Punto’ has not been declared
+         bool pertenece_punto(Punto * p);
+                              ^
+include/satelite.h:99:19: error: ‘Punto’ was not declared in this scope
+         list<pair<Punto *,long int> > get_optimo();
+                   ^
+include/satelite.h:99:35: error: template argument 1 is invalid
+         list<pair<Punto *,long int> > get_optimo();
+                                   ^
+include/satelite.h:99:37: error: template argument 1 is invalid
+         list<pair<Punto *,long int> > get_optimo();
+                                     ^
+include/satelite.h:99:37: error: template argument 2 is invalid
+include/satelite.h:100:23: error: ‘Punto’ was not declared in this scope
+         unordered_set<Punto *> get_puntos(){
+                       ^
+include/satelite.h:100:30: error: template argument 1 is invalid
+         unordered_set<Punto *> get_puntos(){
+                              ^
+include/satelite.h:100:30: error: template argument 2 is invalid
+include/satelite.h:100:30: error: template argument 3 is invalid
+include/satelite.h:100:30: error: template argument 4 is invalid
+In file included from include/coleccion.h:6:0,
+                 from src/main.cpp:10:
+include/Punto.h:17:9: error: ‘Coleccion’ was not declared in this scope
+     set<Coleccion*> colecciones ;
+         ^
+include/Punto.h:17:19: error: template argument 1 is invalid
+     set<Coleccion*> colecciones ;
+                   ^
+include/Punto.h:17:19: error: template argument 2 is invalid
+include/Punto.h:17:19: error: template argument 3 is invalid
+include/Punto.h:27:9: error: ‘Coleccion’ was not declared in this scope
+     set<Coleccion*> getColecciones() ;
+         ^
+include/Punto.h:27:19: error: template argument 1 is invalid
+     set<Coleccion*> getColecciones() ;
+                   ^
+include/Punto.h:27:19: error: template argument 2 is invalid
+include/Punto.h:27:19: error: template argument 3 is invalid
+include/Punto.h:29:18: error: ‘Coleccion’ has not been declared
+     void insertc(Coleccion * c) ;
+                  ^
+include/Punto.h:31:17: error: ‘Coleccion’ has not been declared
+     void removc(Coleccion * c) ;
+                 ^
+src/main.cpp: In function ‘int main(int, char**)’:
+src/main.cpp:87:43: error: no matching function for call to ‘Punto::insertc(Coleccion*&)’
+             (*it)->insertc (colecciones[i]);
+                                           ^
+src/main.cpp:87:43: note: candidate is:
+In file included from include/coleccion.h:6:0,
+                 from src/main.cpp:10:
+include/Punto.h:29:10: note: void Punto::insertc(int*)
+     void insertc(Coleccion * c) ;
+          ^
+include/Punto.h:29:10: note:   no known conversion for argument 1 from ‘__gnu_cxx::__alloc_traits<std::allocator<Coleccion*> >::value_type {aka Coleccion*}’ to ‘int*’
+src/main.cpp:96:60: error: no matching function for call to ‘Satelite::pertenece_punto(Punto*&)’
+             if (satelites[i]->pertenece_punto ((*it).second)){
+                                                            ^
+src/main.cpp:96:60: note: candidate is:
+In file included from include/Punto.h:6:0,
+                 from include/coleccion.h:6,
+                 from src/main.cpp:10:
+include/satelite.h:98:14: note: bool Satelite::pertenece_punto(int*)
+         bool pertenece_punto(Punto * p);
+              ^
+include/satelite.h:98:14: note:   no known conversion for argument 1 from ‘Punto*’ to ‘int*’
+src/main.cpp:104:75: error: conversion from ‘int’ to non-scalar type ‘std::list<std::pair<Punto*, long int> >’ requested
+         list<pair <Punto *, long int> > cogidos= satelites[i]->get_optimo();
+                                                                           ^
+src/main.cpp:105:67: error: conversion from ‘int’ to non-scalar type ‘std::unordered_set<Punto*>’ requested
+         unordered_set<Punto *> quitados= satelites[i]->get_puntos();
+                                                                   ^
+src/main.cpp:107:71: error: conversion from ‘std::list<std::pair<Punto*, long int> >::iterator {aka std::_List_iterator<std::pair<Punto*, long int> >}’ to non-scalar type ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ requested
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                       ^
+src/main.cpp:107:79: error: no match for ‘operator!=’ (operand types are ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ and ‘std::list<std::pair<Punto*, long int> >::iterator {aka std::_List_iterator<std::pair<Punto*, long int> >}’)
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                               ^
+src/main.cpp:107:79: note: candidates are:
+In file included from /usr/include/c++/4.8/list:63:0,
+                 from src/main.cpp:5:
+/usr/include/c++/4.8/bits/stl_list.h:187:7: note: bool std::_List_iterator<_Tp>::operator!=(const _Self&) const [with _Tp = std::pair<Punto*, int>; std::_List_iterator<_Tp>::_Self = std::_List_iterator<std::pair<Punto*, int> >]
+       operator!=(const _Self& __x) const
+       ^
+/usr/include/c++/4.8/bits/stl_list.h:187:7: note:   no known conversion for argument 1 from ‘std::list<std::pair<Punto*, long int> >::iterator {aka std::_List_iterator<std::pair<Punto*, long int> >}’ to ‘const _Self& {aka const std::_List_iterator<std::pair<Punto*, int> >&}’
+In file included from /usr/include/c++/4.8/iosfwd:40:0,
+                 from /usr/include/c++/4.8/ios:38,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/postypes.h:221:5: note: template<class _StateT> bool std::operator!=(const std::fpos<_StateT>&, const std::fpos<_StateT>&)
+     operator!=(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+     ^
+/usr/include/c++/4.8/bits/postypes.h:221:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::fpos<_StateT>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.8/bits/char_traits.h:39,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/stl_pair.h:227:5: note: template<class _T1, class _T2> constexpr bool std::operator!=(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator!=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.8/bits/stl_pair.h:227:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::pair<_T1, _T2>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.8/bits/char_traits.h:39,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/stl_iterator.h:303:5: note: template<class _Iterator> bool std::operator!=(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator!=(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_iterator.h:303:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.8/bits/char_traits.h:39,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/stl_iterator.h:353:5: note: template<class _IteratorL, class _IteratorR> bool std::operator!=(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator!=(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_iterator.h:353:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.8/bits/char_traits.h:39,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/stl_iterator.h:1043:5: note: template<class _IteratorL, class _IteratorR> bool std::operator!=(const std::move_iterator<_Iterator>&, const std::move_iterator<_IteratorR>&)
+     operator!=(const move_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_iterator.h:1043:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::move_iterator<_Iterator>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.8/bits/char_traits.h:39,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/stl_iterator.h:1049:5: note: template<class _Iterator> bool std::operator!=(const std::move_iterator<_Iterator>&, const std::move_iterator<_Iterator>&)
+     operator!=(const move_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_iterator.h:1049:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::move_iterator<_Iterator>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/string:41:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/allocator.h:138:5: note: template<class _T1, class _T2> bool std::operator!=(const std::allocator<_CharT>&, const std::allocator<_T2>&)
+     operator!=(const allocator<_T1>&, const allocator<_T2>&)
+     ^
+/usr/include/c++/4.8/bits/allocator.h:138:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::allocator<_CharT>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/string:41:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/allocator.h:143:5: note: template<class _Tp> bool std::operator!=(const std::allocator<_CharT>&, const std::allocator<_CharT>&)
+     operator!=(const allocator<_Tp>&, const allocator<_Tp>&)
+     ^
+/usr/include/c++/4.8/bits/allocator.h:143:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::allocator<_CharT>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2532:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator!=(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2532:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2544:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator!=(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator!=(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2544:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<std::pair<Punto*, int> >’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2556:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator!=(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2556:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/bits/locale_facets.h:48:0,
+                 from /usr/include/c++/4.8/bits/basic_ios.h:37,
+                 from /usr/include/c++/4.8/ios:44,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from src/main.cpp:1:
+/usr/include/c++/4.8/bits/streambuf_iterator.h:210:5: note: template<class _CharT, class _Traits> bool std::operator!=(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&)
+     operator!=(const istreambuf_iterator<_CharT, _Traits>& __a,
+     ^
+/usr/include/c++/4.8/bits/streambuf_iterator.h:210:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::istreambuf_iterator<_CharT, _Traits>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/tuple:39:0,
+                 from /usr/include/c++/4.8/unordered_map:41,
+                 from src/main.cpp:3:
+/usr/include/c++/4.8/array:233:5: note: template<class _Tp, long unsigned int _Nm> bool std::operator!=(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator!=(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+     ^
+/usr/include/c++/4.8/array:233:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::array<_Tp, _Nm>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/unordered_map:41:0,
+                 from src/main.cpp:3:
+/usr/include/c++/4.8/tuple:835:5: note: template<class ... _TElements, class ... _UElements> constexpr bool std::operator!=(const std::tuple<_Elements ...>&, const std::tuple<_Elements ...>&)
+     operator!=(const tuple<_TElements...>& __t,
+     ^
+/usr/include/c++/4.8/tuple:835:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::tuple<_Elements ...>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/unordered_map:48:0,
+                 from src/main.cpp:3:
+/usr/include/c++/4.8/bits/unordered_map.h:1394:5: note: template<class _Key, class _Tp, class _Hash, class _Pred, class _Alloc> bool std::operator!=(const std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>&, const std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>&)
+     operator!=(const unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/unordered_map.h:1394:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/unordered_map:48:0,
+                 from src/main.cpp:3:
+/usr/include/c++/4.8/bits/unordered_map.h:1406:5: note: template<class _Key, class _Tp, class _Hash, class _Pred, class _Alloc> bool std::operator!=(const std::unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>&, const std::unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>&)
+     operator!=(const unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/unordered_map.h:1406:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/unordered_set:48:0,
+                 from src/main.cpp:4:
+/usr/include/c++/4.8/bits/unordered_set.h:1277:5: note: template<class _Value, class _Hash, class _Pred, class _Alloc> bool std::operator!=(const std::unordered_set<_Value, _Hash, _Pred, _Alloc>&, const std::unordered_set<_Value, _Hash, _Pred, _Alloc>&)
+     operator!=(const unordered_set<_Value, _Hash, _Pred, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/unordered_set.h:1277:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::unordered_set<_Value, _Hash, _Pred, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/unordered_set:48:0,
+                 from src/main.cpp:4:
+/usr/include/c++/4.8/bits/unordered_set.h:1289:5: note: template<class _Value, class _Hash, class _Pred, class _Alloc> bool std::operator!=(const std::unordered_multiset<_Value, _Hash, _Pred, _Alloc>&, const std::unordered_multiset<_Value, _Hash, _Pred, _Alloc>&)
+     operator!=(const unordered_multiset<_Value, _Hash, _Pred, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/unordered_set.h:1289:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::unordered_multiset<_Value, _Hash, _Pred, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/list:63:0,
+                 from src/main.cpp:5:
+/usr/include/c++/4.8/bits/stl_list.h:282:5: note: template<class _Val> bool std::operator!=(const std::_List_iterator<_Tp>&, const std::_List_const_iterator<_Val>&)
+     operator!=(const _List_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_list.h:282:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, long int> >::iterator {aka std::_List_iterator<std::pair<Punto*, long int> >}’ is not derived from ‘const std::_List_const_iterator<_Val>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/list:63:0,
+                 from src/main.cpp:5:
+/usr/include/c++/4.8/bits/stl_list.h:1638:5: note: template<class _Tp, class _Alloc> bool std::operator!=(const std::list<_Tp, _Alloc>&, const std::list<_Tp, _Alloc>&)
+     operator!=(const list<_Tp, _Alloc>& __x, const list<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.8/bits/stl_list.h:1638:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::list<_Tp, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/vector:64:0,
+                 from src/main.cpp:6:
+/usr/include/c++/4.8/bits/stl_vector.h:1428:5: note: template<class _Tp, class _Alloc> bool std::operator!=(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator!=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.8/bits/stl_vector.h:1428:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/set:60:0,
+                 from src/main.cpp:7:
+/usr/include/c++/4.8/bits/stl_tree.h:316:5: note: template<class _Val> bool std::operator!=(const std::_Rb_tree_iterator<_Tp>&, const std::_Rb_tree_const_iterator<_Val>&)
+     operator!=(const _Rb_tree_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_tree.h:316:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::_Rb_tree_iterator<_Tp>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/set:60:0,
+                 from src/main.cpp:7:
+/usr/include/c++/4.8/bits/stl_tree.h:927:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator!=(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator!=(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_tree.h:927:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/set:61:0,
+                 from src/main.cpp:7:
+/usr/include/c++/4.8/bits/stl_set.h:778:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator!=(const std::set<_Key, _Compare, _Alloc>&, const std::set<_Key, _Compare, _Alloc>&)
+     operator!=(const set<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_set.h:778:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::set<_Key, _Compare, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/set:62:0,
+                 from src/main.cpp:7:
+/usr/include/c++/4.8/bits/stl_multiset.h:763:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator!=(const std::multiset<_Key, _Compare, _Alloc>&, const std::multiset<_Key, _Compare, _Alloc>&)
+     operator!=(const multiset<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_multiset.h:763:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::multiset<_Key, _Compare, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/map:61:0,
+                 from src/main.cpp:8:
+/usr/include/c++/4.8/bits/stl_map.h:986:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator!=(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator!=(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_map.h:986:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::map<_Key, _Tp, _Compare, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+In file included from /usr/include/c++/4.8/map:62:0,
+                 from src/main.cpp:8:
+/usr/include/c++/4.8/bits/stl_multimap.h:888:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator!=(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator!=(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.8/bits/stl_multimap.h:888:5: note:   template argument deduction/substitution failed:
+src/main.cpp:107:94: note:   ‘std::list<std::pair<Punto*, int> >::iterator {aka std::_List_iterator<std::pair<Punto*, int> >}’ is not derived from ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’
+         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
+                                                                                              ^
+make: *** [obj/main.o] Error 1

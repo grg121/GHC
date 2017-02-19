@@ -16,7 +16,11 @@ class Coleccion{
     /**
       Constructor con parametros
     */
-    Coleccion(long int puntuacion, list<pair<int,int> > & rangos, list<Punto*> &puntos);
+    Coleccion(long int puntuacion, list<pair<int,int> > & rangos, list<Punto*> &puntos):
+    	  puntuacion(puntuacion),
+    	  rangos(rangos),
+    	  puntos(puntos)
+    	  {};
     /**
     * Devuelve el tamaño de la lista de punteros a Puntos
     */

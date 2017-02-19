@@ -20,9 +20,10 @@ int Punto::getPriority(){
     return output ;
 }
 
-Punto::Punto(int longitud, int lat){
-    longitud = longitud ;
-    latitud = lat ;
+Punto::Punto(int longitud, int lat, int owner):
+	longitud(longitud),
+	latitud(lat),
+	owner(owner){
 }
 
 int Punto::getLongitud(){
@@ -33,11 +34,11 @@ int Punto::getLatitud(){
     return latitud ;
 }
 
-set<int> Punto::getColecciones(){
+set<Coleccion *> Punto::getColecciones(){
     return colecciones ;
 }
 
-set<int> Punto::getSatelites(){
+set<Satelite *> Punto::getSatelites(){
     return satelites ;
 }
 
