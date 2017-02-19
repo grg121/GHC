@@ -158,7 +158,7 @@ if (argc != 2){
 
         in >> lat >> lon >> vel >> w >> d;
 
-        Satelite *s= new Satelite (i, lat, lon, vel, w, d, tiempo);
+        Satelite *s= new Satelite (i, lon, lat, vel, w, d, tiempo);
         satelites.push_back (s);
     }
 
@@ -183,16 +183,10 @@ if (argc != 2){
             punto_foto.second= lon_foto;
 
             Punto *p= new Punto (lon_foto, lat_foto);
-
-            map<pair <int,int>, Punto*>::iterator it;
-
-            it= mapapuntos.find (punto_foto);
-
-            // Si no existe el punto lo creamos
-            if (it == mapapuntos.end()){
+            
+            if(mapapuntos.count(punto_foto)==0)
                 mapapuntos.insert (pair < pair <int,int>, Punto*> (punto_foto, p));
-            }
-
+            
             puntos.push_back (p);
 
         }
@@ -229,12 +223,12 @@ if (argc != 2){
 
      // Comienza el juego
     for (int i= 0; i < nsatelites; i++){
-        list<pair <Punto *, int> > cogidos= satelites[i]->get_optimo();
+        list<pair <Punto *, long int> > cogidos= satelites[i]->get_optimo();
         unordered_set <Punto *> quitados= satelites[i]->get_puntos();
 
         for (list<pair <Punto *, int> >::iterator iter= cogidos.begin(); iter != cogidos.end(); ++iter){
-            out << (*iter).first->getLatitud() << "\t" << 
-            (*iter).first->getLongitud() << "\t" << i << "\t" <<
+            out << (*iter).first->getLatitud() << " " << 
+            (*iter).first->getLongitud() << " " << i << " " <<
             (*iter).second << endl;
         }
 

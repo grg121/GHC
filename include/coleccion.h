@@ -1,6 +1,5 @@
 #ifndef _COLECCION_H_
 #define _COLECCION_H_
-#endif
 
 #include <iostream>
 #include <list>
@@ -12,7 +11,7 @@ class Coleccion{
   private:
     const long int puntuacion;
     list<pair<int,int> > rangos;
-    list<Punto*> puntos;
+    list<Punto *> puntos;
   public:
     /**
       Constructor con parametros
@@ -35,3 +34,5 @@ class Coleccion{
     */
     const list<Punto*> & getListPuntos() const;
 };
+
+#endif

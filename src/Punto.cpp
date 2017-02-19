@@ -13,7 +13,7 @@ int Punto::getPriority(){
     int tam, pun ;
     while(it != colecciones.end()){
         tam = (*it)->getTamListPuntos() ;
-        pun = (*it)->getPuntiacion ;
+        pun = (*it)->getPuntuacion() ;
         output += ((pun/tam)/satelites.size()) ;
         ++it ;
     }
@@ -50,9 +50,7 @@ void Punto::inserts(Satelite * s){
 }
 
 bool Punto::usado(){
-    if (owner < 0)
-        return false ;
-    else return true ;
+    return owner >= 0;
 }
 
 void Punto::removc(Coleccion * c){

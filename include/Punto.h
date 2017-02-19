@@ -1,6 +1,5 @@
 #ifndef _PUNTO_PUNTO_H_
 #define _PUNTO_PUNTO_H_
-#endif
 
 #include<set>
 #include<coleccion.h>
@@ -29,8 +28,8 @@ public:
     set<Satelite*> getSatelites() ;
     void insertc(Coleccion * c) ;
     void inserts(Satelite * s) ;
-    void removc(Coleccion c) ;
-    void removs(Satelite s) ;
+    void removc(Coleccion * c) ;
+    void removs(Satelite * s) ;
     bool usado() ;
 
     // Devuelve el satélite encargado de fotografiar el punto
@@ -43,3 +42,5 @@ public:
 
     int getPriority() ;
 };
+
+#endif
